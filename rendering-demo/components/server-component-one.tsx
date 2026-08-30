@@ -1,0 +1,14 @@
+import fs from 'fs';
+
+import ClientComponentOne from './client-component-one';
+
+export default function ServerComponentOne() {
+  fs.readFileSync('./components/server-component-one.tsx', 'utf-8');
+
+  return (
+    <>
+      <h1>Server Component One</h1>
+      <ClientComponentOne />
+    </>
+  );
+}
