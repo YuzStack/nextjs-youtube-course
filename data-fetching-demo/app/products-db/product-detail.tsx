@@ -7,7 +7,7 @@ import type { Product } from './page';
 import Form from 'next/form';
 
 export default function ProductDetail({ products }: { products: Product[] }) {
-  const [optimisticProducts, setOptimisticProducts] = useOptimistic(
+  const [optimisticProducts, optimisticDelete] = useOptimistic(
     products,
     (curProducts, productId) => {
       return curProducts.filter(product => product.id !== productId);
@@ -15,7 +15,7 @@ export default function ProductDetail({ products }: { products: Product[] }) {
   );
 
   async function deleteProductById(productId: number) {
-    setOptimisticProducts(productId);
+    optimisticDelete(productId);
     await deleteProductAction(productId);
   }
 
